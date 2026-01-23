@@ -1,5 +1,13 @@
 //
 //  Note.swift
+//  PersonalAssistantApp
+//
+//  Created by Ayşe Fulya on 27.10.2025.
+//
+
+
+//
+//  Note.swift
 //  PersonalAssistant
 //
 //  Models klasörüne ekle (Task.swift dosyasını sil, bunu ekle)
@@ -10,6 +18,7 @@ import SwiftUI
 struct Note: Identifiable, Codable {
     let id: UUID
     var title: String
+    var content: String
     var isCompleted: Bool
     var createdAt: Date
     var completedDate: Date?
@@ -19,6 +28,7 @@ struct Note: Identifiable, Codable {
     init(
         id: UUID = UUID(),
         title: String,
+        content: String = "",
         isCompleted: Bool = false,
         createdAt: Date = Date(),
         completedDate: Date? = nil,
@@ -27,6 +37,7 @@ struct Note: Identifiable, Codable {
     ) {
         self.id = id
         self.title = title
+        self.content = content
         self.isCompleted = isCompleted
         self.createdAt = createdAt
         self.completedDate = completedDate

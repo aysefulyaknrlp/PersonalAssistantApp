@@ -400,6 +400,12 @@
 				DEVELOPMENT_TEAM = PWYF9A84X8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Personal Assistant";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Notlarınıza fotoğraf eklemek için kamera erişimi gerekiyor";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Sesli komut için mikrofon gerekiyor";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Notlarınıza fotoğraf eklemek için galeri erişimi gerekiyor";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Konuşmanızı metne çevirmek için gerekli";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +434,12 @@
 				DEVELOPMENT_TEAM = PWYF9A84X8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Personal Assistant";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Notlarınıza fotoğraf eklemek için kamera erişimi gerekiyor";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Sesli komut için mikrofon gerekiyor";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Notlarınıza fotoğraf eklemek için galeri erişimi gerekiyor";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Konuşmanızı metne çevirmek için gerekli";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

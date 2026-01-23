@@ -7,34 +7,53 @@
 import SwiftUI
 
 struct DailyTasksView: View {
-    @ObservedObject var viewModel: TaskViewModel
+    @ObservedObject var viewModel: NoteViewModel
     
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 20) {
-                ForEach(viewModel.groupedTasks, id: \.date) { group in
-                    DailyTaskSection(
-                        date: group.date,
-                        tasks: group.tasks,
-                        onToggle: { task in
-                            viewModel.toggleTaskCompletion(task)
-                        },
-                        onDelete: { task in
-                            viewModel.deleteTask(task)
-                        }
-                    )
-                }
+        if viewModel.groupedNotes.isEmpty {
+            VStack(spacing: 16) {
+                Image(systemName: "calendar")
+                    .font(.system(size: 60))
+                    .foregroundColor(.gray.opacity(0.5))
+                
+                Text("Henüz not yok")
+                    .font(.title3)
+                    .fontWeight(.medium)
+                
+                Text("Not ekleyerek başlayın")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
             }
-            .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else {
+            ScrollView {
+                LazyVStack(spacing: 20) {
+                    ForEach(viewModel.groupedNotes, id: \.date) { group in
+                        DailyTaskSection(
+                            date: group.date,
+                            tasks: group.notes,
+                            onToggle: { task in
+                                viewModel.toggleNoteCompletion(task)
+                            },
+                            onDelete: { task in
+                                viewModel.deleteNote(task)
+                            },
+                            viewModel: viewModel
+                        )
+                    }
+                }
+                .padding()
+            }
         }
     }
 }
 
 struct DailyTaskSection: View {
     let date: Date
-    let tasks: [Task]
-    let onToggle: (Task) -> Void
-    let onDelete: (Task) -> Void
+    let tasks: [Note]
+    let onToggle: (Note) -> Void
+    let onDelete: (Note) -> Void
+    let viewModel: NoteViewModel?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -63,13 +82,14 @@ struct DailyTaskSection: View {
             }
             .padding(.horizontal, 4)
             
-            // Görevler
+            // Notlar
             VStack(spacing: 10) {
                 ForEach(tasks) { task in
-                    TaskRowView(
-                        task: task,
+                    NoteRowView(
+                        note: task,
                         onToggle: { onToggle(task) },
-                        onDelete: { onDelete(task) }
+                        onDelete: { onDelete(task) },
+                        viewModel: viewModel
                     )
                 }
             }
@@ -121,5 +141,5 @@ struct DailyTaskSection: View {
 }
 
 #Preview {
-    DailyTasksView(viewModel: TaskViewModel())
+    DailyTasksView(viewModel: NoteViewModel())
 }

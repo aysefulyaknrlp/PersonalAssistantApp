@@ -5,13 +5,6 @@
 //  Created by Ayşe Fulya on 24.10.2025.
 //
 
-
-//
-//  ImageManager.swift
-//  PersonalAssistant
-//
-//  Services klasörüne ekle
-
 import UIKit
 
 class ImageManager {
