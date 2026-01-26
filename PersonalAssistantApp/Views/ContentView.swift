@@ -2,7 +2,8 @@
 //  ContentView.swift
 //  PersonalAssistant
 //
-//  Root View - Views klasörüne ekle
+//  Created by Ayşe Fulya on 27.10.2025.
+//
 
 import SwiftUI
 

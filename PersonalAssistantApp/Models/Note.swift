@@ -5,13 +5,6 @@
 //  Created by Ayşe Fulya on 27.10.2025.
 //
 
-
-//
-//  Note.swift
-//  PersonalAssistant
-//
-//  Models klasörüne ekle (Task.swift dosyasını sil, bunu ekle)
-
 import Foundation
 import SwiftUI
 

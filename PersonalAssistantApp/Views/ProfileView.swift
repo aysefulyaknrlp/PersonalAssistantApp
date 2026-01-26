@@ -2,7 +2,8 @@
 //  ProfileView.swift
 //  PersonalAssistant
 //
-//  Views klasörüne ekle
+//  Created by Ayşe Fulya on 27.10.2025.
+//
 
 import SwiftUI
 import Photos

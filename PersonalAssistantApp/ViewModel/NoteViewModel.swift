@@ -6,12 +6,6 @@
 //
 
 
-//
-//  NoteViewModel.swift
-//  PersonalAssistant
-//
-//  ViewModels klasörüne ekle (TaskViewModel.swift dosyasını sil, bunu ekle)
-
 import Foundation
 import Combine
 

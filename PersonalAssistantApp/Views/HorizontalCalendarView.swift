@@ -2,7 +2,7 @@
 //  HorizontalCalendarView.swift
 //  PersonalAssistantApp
 //
-//  Created by Personal Assistant on 26.01.2026.
+//  Created by Ayşe Fulya on 26.01.2026.
 //
 
 import SwiftUI

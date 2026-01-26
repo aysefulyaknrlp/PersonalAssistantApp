@@ -5,13 +5,6 @@
 //  Created by Ayşe Fulya on 27.10.2025.
 //
 
-
-//
-//  NoteRepository.swift
-//  PersonalAssistant
-//
-//  Repositories klasörüne ekle (TaskRepository.swift dosyasını sil, bunu ekle)
-
 import Foundation
 
 class NoteRepository {
