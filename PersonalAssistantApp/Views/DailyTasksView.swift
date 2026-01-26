@@ -8,43 +8,91 @@ import SwiftUI
 
 struct DailyTasksView: View {
     @ObservedObject var viewModel: NoteViewModel
+    @State private var selectedDate: Date? = nil
     
     var body: some View {
-        if viewModel.groupedNotes.isEmpty {
-            VStack(spacing: 16) {
-                Image(systemName: "calendar")
-                    .font(.system(size: 60))
-                    .foregroundColor(.gray.opacity(0.5))
-                
-                Text("Henüz not yok")
-                    .font(.title3)
-                    .fontWeight(.medium)
-                
-                Text("Not ekleyerek başlayın")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        } else {
-            ScrollView {
-                LazyVStack(spacing: 20) {
-                    ForEach(viewModel.groupedNotes, id: \.date) { group in
-                        DailyTaskSection(
-                            date: group.date,
-                            tasks: group.notes,
-                            onToggle: { task in
-                                viewModel.toggleNoteCompletion(task)
-                            },
-                            onDelete: { task in
-                                viewModel.deleteNote(task)
-                            },
-                            viewModel: viewModel
-                        )
+        VStack(spacing: 0) {
+            // Horizontal Calendar
+            HorizontalCalendarView(selectedDate: $selectedDate)
+                .background(Color(.systemBackground))
+                .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 5)
+                .zIndex(1)
+            
+            if viewModel.groupedNotes.isEmpty {
+                emptyStateView
+            } else {
+                ScrollView {
+                    LazyVStack(spacing: 20) {
+                        if let selected = selectedDate {
+                            // Show specific date
+                            if let notesForDate = notes(for: selected), !notesForDate.isEmpty {
+                                DailyTaskSection(
+                                    date: selected,
+                                    tasks: notesForDate,
+                                    onToggle: { task in viewModel.toggleNoteCompletion(task) },
+                                    onDelete: { task in viewModel.deleteNote(task) },
+                                    viewModel: viewModel
+                                )
+                            } else {
+                                // No notes for selected date
+                                checkmarkEmptyView
+                            }
+                        } else {
+                            // Show all dates (original behavior)
+                            ForEach(viewModel.groupedNotes, id: \.date) { group in
+                                DailyTaskSection(
+                                    date: group.date,
+                                    tasks: group.notes,
+                                    onToggle: { task in viewModel.toggleNoteCompletion(task) },
+                                    onDelete: { task in viewModel.deleteNote(task) },
+                                    viewModel: viewModel
+                                )
+                            }
+                        }
                     }
+                    .padding()
                 }
-                .padding()
             }
         }
+    }
+    
+    private var emptyStateView: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "calendar")
+                .font(.system(size: 60))
+                .foregroundColor(.gray.opacity(0.5))
+            
+            Text("Henüz not yok")
+                .font(.title3)
+                .fontWeight(.medium)
+            
+            Text("Not ekleyerek başlayın")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    
+    private var checkmarkEmptyView: some View {
+        VStack(spacing: 16) {
+            Spacer()
+                .frame(height: 40)
+            Image(systemName: "calendar.badge.clock")
+                .font(.system(size: 50))
+                .foregroundColor(.gray.opacity(0.4))
+            Text("Bu tarih için planlanmış not yok")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+        }
+        .padding(.top, 40)
+    }
+    
+    private func notes(for date: Date) -> [Note]? {
+        let calendar = Calendar.current
+        // Find the group that matches the date
+        return viewModel.groupedNotes.first { group in
+            calendar.isDate(group.date, inSameDayAs: date)
+        }?.notes
     }
 }
 
