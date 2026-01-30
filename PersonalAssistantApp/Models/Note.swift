@@ -2,7 +2,7 @@
 //  Note.swift
 //  PersonalAssistantApp
 //
-//  Created by Ayşe Fulya on 27.10.2025.
+//  Created by Ayşe Fulya on 27.10.2025..
 //
 
 import Foundation
